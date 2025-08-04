@@ -1,0 +1,20 @@
+name: Build and Publish image to Docker Hub
+on: #Trigger the workflow on speicfic actions
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile
+
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build image
+        run: docker built . -t ashokkumarbtech/portfolio:1.0
+      - name: Push image to the docker hub
+        run: | # the pipe denotes that the command is a multi-line command
+          docker login -u ashokkumarbtech -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker push ashokkumarbtech/portfolio:1.0

@@ -1,0 +1,74 @@
+:root {
+  --primary-color: #00aeff;
+  --secondary-color: #ffffff;
+  --background-color: #0a192f;
+  --text-color: #ccd6f6;
+  --card-background: #112240;
+  --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.8;
+}
+
+.App {
+  text-align: center;
+}
+
+main {
+  /* No padding here, will be handled by sections */
+}
+
+section {
+  padding: 6rem 2rem;
+  border-bottom: 1px solid #112240;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+#home {
+    padding: 0;
+    opacity: 1 !important;
+    transition: none !important;
+}
+
+section.visible {
+    opacity: 1;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--secondary-color);
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 5px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
