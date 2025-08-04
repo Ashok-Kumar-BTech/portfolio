@@ -14,11 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build image
-        run: docker build . -t ashokkumarbtech/portfolio:1.0
-      - name: Push image to the docker hub
-        env:
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-        run: | # the pipe denotes that the command is a multi-line command
-          echo "$DOCKER_HUB_TOKEN" | docker login -u ashokkumarbtech --password-stdin
-          docker push ashokkumarbtech/portfolio:1.0
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ashokkumarbtech/portfolio:1.0
