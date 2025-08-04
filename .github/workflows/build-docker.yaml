@@ -17,6 +17,8 @@ jobs:
       - name: Build image
         run: docker build . -t ashokkumarbtech/portfolio:1.0
       - name: Push image to the docker hub
+        env:
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: | # the pipe denotes that the command is a multi-line command
-          docker login -u ashokkumarbtech -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker echo "$DOCKER_HUB_TOKEN" | docker login -u ashokkumarbtech --password-stdin
           docker push ashokkumarbtech/portfolio:1.0
