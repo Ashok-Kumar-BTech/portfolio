@@ -20,5 +20,5 @@ jobs:
         env:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: | # the pipe denotes that the command is a multi-line command
-          docker echo "$DOCKER_HUB_TOKEN" | docker login -u ashokkumarbtech --password-stdin
+          echo "$DOCKER_HUB_TOKEN" | docker login -u ashokkumarbtech --password-stdin
           docker push ashokkumarbtech/portfolio:1.0
