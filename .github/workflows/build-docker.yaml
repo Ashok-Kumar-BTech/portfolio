@@ -5,6 +5,8 @@ on: #Trigger the workflow on speicfic actions
       - main
     paths:
       - Dockerfile
+      - .github/workflows/**
+      - src/**
 
 jobs:
   publish_images:
